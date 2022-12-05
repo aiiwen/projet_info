@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <string.h>
+
+int menu_principale()
+{
+    int choix;
+    printf("#################  BIENVENUE  #################\n\n");
+    printf("#################    MENU     #################\n");
+    do{
+        printf("     ~~~  Faites votre choix  ~~~\n1: nouvelle partie\n2: charger partie\n3: afficher regles et credits\n4: Quitter\n");
+        scanf("%d", &choix);
+    } while (choix<1 || choix>5);
+    return choix;
+
+}
+
+
+
+void nouvelle_partie(struct player* player)
+{
+    struct player{
+        char name[20];
+
+    };
+    int nb_players;
+    do{
+        printf("Chosir nombre de joueurs: \n");
+        scanf("%d", &nb_players);
+    } while (nb_players<0 || nb_players>6);
+    for (int i=0; i<nb_players; i++)
+    {
+
+
+        printf("chosir le prenom du joueur numero %d\n", i+1);
+        scanf("%s", player[i].name);
+        printf("%s\n", player[i].name);
+    }
+
+    printf("%s    %s",player[0], player[1] );
+}
+
+void regles_credits()
+{
+    printf("~~~~~~~~  But du jeu  ~~~~~~~~\n");
+    printf("Vous penetrez dans un labyrinthe enchante a la\n"
+           "recherche de fabuleux tresors et de mysterieuses\n"
+           "creatures. Chacun d entre vous essaye de creer des\n"
+           "chemins pour atteindre le tresor qu il convoite en faisant\n"
+           "coulisser astucieusement les couloirs.\n"
+           "Le joueur qui aura trouve tous ses tresors et rejoint sa\n"
+           "case depart le premier sera declare vainqueur.\n\n\n");
+
+    printf("~~~~~~~~  Mise en place  ~~~~~~~~\n");
+    printf("Le plateau, de 7 lignes et de 7 colonnes\n"
+           "comporte 16 tuiles dont la position estreglementee et fixe\n"
+           "Le coffret comprend, en plus des 16 tuiles fixes,\n"
+           "34 tuiles qui seront placer aleatoirement en debut de partie\n"
+           "des tuiles en T et L avec tresors ou non, en |.\n\n"
+           "Le jeu comporte aussi 24 cartes tresor a distribuer equitablement\n"
+           "entre les joueurs, face cachee, au debut de la partie.\n"
+           "Chaque joueur ne ne peut voir qu'une seule de se cartes tresor\n"
+           "a la fois. Celle-ci lui indique le prochain tresor qu il doit atteindre.\n"
+           "Une fois ce tresor atteint, la prochaine carte tresor du joueur lui est\n"
+           "devoilee, lui indiquant le prochain tresor a atteindre.\n\n\n");
+
+    printf("~~~~~~~~  Deroulement de la partie  ~~~~~~~~\n");
+    printf("Chaque joueur commence par regarder secretement la\n"
+           "carte superieure de sa pile\n"
+           "Le tour d un joueur se decompose en deux etapes :\n"
+           "1. Modifier les couloirs.\n"
+           "2. Deplacer son pion.\n\n"
+           "Quand vient son tour, le joueur doit essayer d atteindre\n"
+           "la case sur laquelle figure le meme tresor que sur la\n"
+           "carte superieure de sa pile. Pour cela, il modifie toujours\n"
+           "d abord le labyrinthe en inserant la plaque couloir, puis\n"
+           "deplace son pion.\n"
+           "Pour deplacer un case, le joueur choisit une rangee et\n"
+           "y pousse la plaque supplementaire vers l interieur du\n"
+           "plateau jusqu a ce qu une et une seule plaque a l oppose\n"
+           "soit expulsee.\n\n\n");
+
+    printf("~~~~~~~~  Fin de la partie  ~~~~~~~~\n");
+    printf("Le vainqueur est le premier joueur a avoir retourne toutes\n"
+           "ses cartes et a ramener son pion a son point de depart.\n\n\n");
+
+    printf("~~~~~~~~  Credits  ~~~~~~~~\n");
+    printf("Jeu: labyrinthe de ravensburger\n"
+           "code par Octave Saveaux, Pauline Bereau, Marina Sa Nascimento et Mathis Puech my love.\n\n\n\n");
+
+}
+
+
+
+
+
+int main()
+{
+    struct player{
+        char name[20];
+
+    };
+    struct player player[5];
+
+    int choix;
+    choix = menu_principale();
+    if (choix==1) nouvelle_partie(&player[5]);
+    else if (choix==2){
+        printf("pas encore code");
+    }
+    else if (choix==3){
+        regles_credits();
+        menu_principale();
+    }
+    else if (choix==4) return 0;
+
+
+    return 0;
+}
